@@ -1,0 +1,25 @@
+UDP KLIENT:
+gst-launch-1.0 -v udpsrc port=3334 ! application/x-rtp, media=video, clock-rate=90000, payload=96 ! rtpjpegdepay ! jpegdec ! videoconvert ! autovideosink
+
+modified launch line:
+ffplay -rtsp_transport udp rtsp://{192.168.1.233}{:8554}/test-vf "setpts=N/30" -fflags nobuffer -flags low_delay -framedrop
+
+# install a missing dependency
+$ sudo apt-get install libx264-dev libjpeg-dev
+# install the remaining plugins
+$ sudo apt-get install libgstreamer1.0-dev \
+     libgstreamer-plugins-base1.0-dev \
+     libgstreamer-plugins-bad1.0-dev \
+     gstreamer1.0-plugins-ugly \
+     gstreamer1.0-tools \
+     gstreamer1.0-gl \
+     gstreamer1.0-gtk3
+
+#if no element v4l2src
+sudo apt-get install gstreamer1.0-plugins-good
+
+
+@reboot sleep 10;(. ~/.profile; /usr/bin/screen -dmS screennamn ~/filnamn.sh)
+
+
+gst-launch-1.0 -v v4l2src device=/dev/video0 num-buffers=-1 ! video/x-raw, width=640, height=480, framerate=30/1 ! videoconvert ! jpegenc ! rtpjpegpay ! udpsink host=192.168.1.116 port=3334
