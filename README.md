@@ -7,4 +7,5 @@ All the .sh scripts you will find under [files](https://github.com/Hamid3DATA/Ro
 
 The "Rroject RoV.docx" file showcases how i did everything (in Norwegian :/). It also showcases where exactly i found some of the python codes and instructions.
 <br />
+
 Maybe someday i will translate it into English
